@@ -14,8 +14,10 @@ I measure emotional intensity using three independent methods:
   (campaign speeches, congressional speeches, tweets), applied after French→English 
   translation via https://huggingface.co/Helsinki-NLP/opus-mt-fr-en
 - **mDeBERTa zero-shot** — a multilingual transformer classifying emotional intensity 
-  without any training on our data, used as an independent validation
+  without any training on the data.
+
+I use three different models because there is no validated benchmark for this corpus. Comparing them helps me see whether the findings are robust.
 
 I then test whether distance from the political centre predicts emotional intensity 
-using OLS regression, and examine whether the relationship is U-shaped — with both 
+using OLS regression, and examine whether the relationship is U-shaped : with both 
 far-left and far-right candidates writing more emotionally than mainstream candidates.
