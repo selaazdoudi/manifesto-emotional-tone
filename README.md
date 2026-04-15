@@ -12,7 +12,7 @@ I measure emotional intensity using three independent methods:
   six emotional dimensions: anger, fear, sadness, surprise, joy, and disgust
 - **https://huggingface.co/thomasrenault/emotion** — a DistilBERT model fine-tuned on ~200k US political texts 
   (campaign speeches, congressional speeches, tweets), applied after French→English 
-  translation via Helsinki-NLP/opus-mt-fr-en](https://huggingface.co/Helsinki-NLP/opus-mt-fr-en
+  translation via https://huggingface.co/Helsinki-NLP/opus-mt-fr-en
 - **mDeBERTa zero-shot** — a multilingual transformer classifying emotional intensity 
   without any training on our data, used as an independent validation
 
