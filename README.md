@@ -10,7 +10,7 @@ I measure emotional intensity using three independent methods:
 
 - **pyFeel** (https://github.com/AdilZouitine/pyFeel) — a French emotion scoring (based on a bag-of-word approach) each text on 
   six emotional dimensions: anger, fear, sadness, surprise, joy, and disgust
-- **(https://huggingface.co/thomasrenault/emotion)** — a DistilBERT model fine-tuned on ~200k US political texts 
+- **https://huggingface.co/thomasrenault/emotion** — a DistilBERT model fine-tuned on ~200k US political texts 
   (campaign speeches, congressional speeches, tweets), applied after French→English 
   translation via Helsinki-NLP/opus-mt-fr-en](https://huggingface.co/Helsinki-NLP/opus-mt-fr-en
 - **mDeBERTa zero-shot** — a multilingual transformer classifying emotional intensity 
