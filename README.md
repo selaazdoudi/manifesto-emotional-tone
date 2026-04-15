@@ -8,11 +8,11 @@ in their *professions de foi*?**
 
 I measure emotional intensity using three independent methods:
 
-- **pyFeel** (Abdaoui et al., 2017) — a French emotion lexicon scoring each text on 
-  six NRC dimensions: anger, fear, sadness, surprise, joy, and disgust
-- **thomasrenault/emotion** — a DistilBERT model fine-tuned on ~200k US political texts 
+- **pyFeel** (https://github.com/AdilZouitine/pyFeel) — a French emotion scoring (based on a bag-of-word approach) each text on 
+  six emotional dimensions: anger, fear, sadness, surprise, joy, and disgust
+- **(https://huggingface.co/thomasrenault/emotion)** — a DistilBERT model fine-tuned on ~200k US political texts 
   (campaign speeches, congressional speeches, tweets), applied after French→English 
-  translation via Helsinki-NLP/opus-mt-fr-en
+  translation via Helsinki-NLP/opus-mt-fr-en](https://huggingface.co/Helsinki-NLP/opus-mt-fr-en
 - **mDeBERTa zero-shot** — a multilingual transformer classifying emotional intensity 
   without any training on our data, used as an independent validation
 
