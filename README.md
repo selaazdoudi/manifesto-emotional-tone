@@ -8,12 +8,12 @@ in their *professions de foi*?**
 
 I measure emotional intensity using three independent methods:
 
-- **pyFeel** (https://github.com/AdilZouitine/pyFeel) — a French emotion scoring (based on a bag-of-word approach) each text on 
+- **pyFeel** (https://github.com/AdilZouitine/pyFeel) : a French emotion scoring (based on a bag-of-word approach) each text on 
   six emotional dimensions: anger, fear, sadness, surprise, joy, and disgust
-- **https://huggingface.co/thomasrenault/emotion** — a DistilBERT model fine-tuned on ~200k US political texts 
+- **https://huggingface.co/thomasrenault/emotion** : a DistilBERT model fine-tuned on ~200k US political texts 
   (campaign speeches, congressional speeches, tweets), applied after French→English 
   translation via https://huggingface.co/Helsinki-NLP/opus-mt-fr-en
-- **mDeBERTa zero-shot** — a multilingual transformer classifying emotional intensity 
+- **mDeBERTa zero-shot** (https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7) : a multilingual transformer classifying emotional intensity 
   without any training on the data.
 
 I use three different models because there is no validated benchmark for this corpus. Comparing them helps me see whether the findings are robust.
