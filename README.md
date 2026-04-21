@@ -16,6 +16,8 @@ Do ideology, incumbency, or local economic context shape how candidates write?
 |---|---|
 | `dataset_construction.ipynb` | Corpus construction, political classification, contextual variables |
 | `emotion_scoring.ipynb` | Emotion measurement, model comparison, validation |
+| `RQ1_ideology_emotion.ipynb` | U-shape hypothesis, OLS regressions, sensitivity analysis |
+
 
 ## Dataset Construction
 
@@ -57,3 +59,15 @@ Three methods are used because no validated benchmark exists for this corpus.
 Convergence across methods with different failure modes is treated as a robustness 
 criterion. Following a manual validation exercise, **thomasrenault** is used as the 
 primary measure for RQ2 and RQ3, while all three intensity scores are used for RQ1.
+
+## RQ1 — Ideology and Emotional Register
+
+Candidates further from the political centre use a significantly more intense 
+emotional register. The U-shape holds across all three models and both electoral 
+years (1981 and 1993). On thomasrenault, far-left and far-right score 12–14 points 
+higher than the mainstream left (β = +0.124 and β = +0.137, p < 0.001, R² = 0.36).
+
+The two extremes differ in emotional profile: far-right intensity is driven more by 
+fear and sadness alongside anger; far-left intensity by anger and disgust. Joy 
+follows an inverted pattern — ecologists and the mainstream left score highest, 
+confirming that positive affect is a feature of the centre, not the extremes.
