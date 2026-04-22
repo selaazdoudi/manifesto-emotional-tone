@@ -18,6 +18,7 @@ Do ideology, incumbency, or local economic context shape how candidates write?
 | `emotion_scoring.ipynb` | Emotion measurement, model comparison, validation |
 | `RQ1_ideology_emotion.ipynb` | U-shape hypothesis, OLS regressions, sensitivity analysis |
 | `RQ2_incumbency_governing_party.ipynb` | Incumbency, governing party status, and positive rhetoric |
+| `RQ3_economic_context.ipynb` | Local unemployment and emotional tone |
 
 
 
@@ -91,3 +92,20 @@ points higher on joy than opposition candidates (β = +0.095, p < 0.001) — fiv
 times larger than the individual incumbency effect. The effect holds in both years 
 but is stronger in 1981 (β = +0.127), when the contrast between a newly elected 
 Socialist government and a frustrated opposition was at its sharpest.
+
+## RQ3 — Local Economic Context and Emotional Tone
+
+Local unemployment predicts emotional tone, but the effect is small and 
+heterogeneous across blocs. Higher unemployment is associated with more intensity 
+(β = +0.0018, p < 0.01) and anger (β = +0.0038, p < 0.001), controlling for bloc 
+and year.
+
+The interaction model reveals a striking asymmetry: left-wing candidates in 
+high-unemployment departments write more intensely and less positively — consistent 
+with a rhetoric of economic denunciation. Right and far-right candidates show the 
+opposite pattern, becoming less intense and more joyful as unemployment rises — 
+consistent with an opposition strategy of optimistic contrast.
+
+The effect is absent in 1981 and emerges only in 1993, when unemployment variation 
+across departments was large enough to generate detectable rhetorical differences.
+
