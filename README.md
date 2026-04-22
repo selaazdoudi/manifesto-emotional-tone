@@ -17,6 +17,8 @@ Do ideology, incumbency, or local economic context shape how candidates write?
 | `dataset_construction.ipynb` | Corpus construction, political classification, contextual variables |
 | `emotion_scoring.ipynb` | Emotion measurement, model comparison, validation |
 | `RQ1_ideology_emotion.ipynb` | U-shape hypothesis, OLS regressions, sensitivity analysis |
+| `RQ2_incumbency_governing_party.ipynb` | Incumbency, governing party status, and positive rhetoric |
+
 
 
 ## Dataset Construction
@@ -71,3 +73,21 @@ The two extremes differ in emotional profile: far-right intensity is driven more
 fear and sadness alongside anger; far-left intensity by anger and disgust. Joy 
 follows an inverted pattern — ecologists and the mainstream left score highest, 
 confirming that positive affect is a feature of the centre, not the extremes.
+
+## RQ2 — Incumbency, Governing Party, and Positive Rhetoric
+
+Both dimensions of political power predict positivity, but the governing party 
+effect is substantially stronger than the individual incumbency effect.
+
+**RQ2a — Individual mandate**: candidates with an active mandate score 2 points 
+higher on joy than challengers (β = +0.019, p < 0.001), controlling for bloc and 
+year. The effect is concentrated in the far-left, where incumbents are markedly 
+more positive than challengers (β = +0.068, p < 0.001) — holding office appears 
+to moderate far-left rhetoric specifically. The effect is driven by 1993 and is 
+not significant in 1981.
+
+**RQ2b — Governing party**: candidates from the party in power score nearly 10 
+points higher on joy than opposition candidates (β = +0.095, p < 0.001) — five 
+times larger than the individual incumbency effect. The effect holds in both years 
+but is stronger in 1981 (β = +0.127), when the contrast between a newly elected 
+Socialist government and a frustrated opposition was at its sharpest.
