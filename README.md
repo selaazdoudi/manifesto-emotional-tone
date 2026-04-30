@@ -23,9 +23,9 @@ Do ideology, incumbency, or local economic context shape how candidates write?
 |----------|--------------|
 | `0_dataset_construction.ipynb` | Corpus construction, party-label harmonisation, political classification, contextual variables (incumbency, unemployment) |
 | `1_emotion_measurement.ipynb` | Three-model emotion pipeline (pyFeel, DistilBERT, mDeBERTa), convergent validity, face validity on 50 manifestos, corpus-level validation with BERTopic, model selection |
-| `2_ideology_emotion.ipynb` | Descriptive patterns by political bloc, per-emotion lollipop charts, OLS regressions with continuous distance-from-centre, robustness checks across all three models |
+| `2_ideology_emotion.ipynb` | Descriptive patterns by political bloc, per-emotion lollipop charts, robustness checks across all three models |
 | `3_economic_context.ipynb` | LDA topic modelling (K-selection via coherence + Jaccard stability), identification of unemployment-related discourse, emotion scores vs. departmental unemployment rate, interaction model by political bloc |
-| `4_incumbency_and_emotionvstext.ipynb` | Incumbency coding, governing-party classification, positivity and joy regressions, bloc × incumbency interaction plots, facial emotion extraction and face-vs-text comparison |
+| `4_incumbency_and_emotionvstext.ipynb` | Incumbency coding, governing-party classification, positivity and joy comparisons, bloc × incumbency interaction plots, facial emotion extraction and face-vs-text comparison |
 
 ---
 
@@ -43,13 +43,13 @@ Do ideology, incumbency, or local economic context shape how candidates write?
 
 Emotional intensity is measured using three independent methods across Paul Ekman's six basic emotions (joy, anger, fear, sadness, disgust, surprise):
 
-**Method 1 — pyFeel (lexicon-based)** scores each text by matching tokenised words against a 14,000-word French lexicon. Emotion scores are the proportion of matched words per category. A composite intensity score (`feel_intensity_nrc`) is computed as the mean of the six emotion dimensions, excluding the broad positivity aggregate.
+**Method 1 — pyFeel (lexicon-based)** scores each text by matching tokenised words against a 14,000-word French lexicon. Emotion scores are the proportion of matched words per category. 
 
 **Method 2 — thomasrenault/emotion (DistilBERT)** is a transformer fine-tuned on ~200k GPT-4o-mini-annotated US political texts. Because the model is English-only, each manifesto is first translated using `facebook/nllb-200-1.3B` in 400-token chunks with 20-token overlap. The translated text is then passed through the emotion model in ~500-token chunks; the final score is the average across chunks. Eight sigmoid outputs are produced; Ekman emotions are retained for comparability.
 
-**Method 3 — mDeBERTa (zero-shot NLI)** applies a multilingual NLI model directly to the original French text. Each chunk is scored by testing hypotheses of the form "this text expresses anger", and chunk scores are averaged. No translation is required.
+**Method 3 — mDeBERTa (zero-shot NLI)** applies a multilingual NLI model directly to the original French text. Each chunk is scored by testing hypotheses of the form "this text expresses anger", and chunk scores are averaged. 
 
-**Validation** — The three methods are compared on convergent validity (pairwise dominant-emotion agreement: FEEL × DistilBERT 77.5%, DistilBERT × zero-shot 33.3%, FEEL × zero-shot 11.2%), face validity (manual reading of 50 disagreement cases), and corpus-level validation. BERTopic is used to cluster 1993 unemployment-discourse texts into four rhetorical frames (conflictual, programmatic, principled, mobilising) to test whether the zero-shot model is sensitive to tone vs. topic — it is not (sadness assigned in 99.6–100% of cases across all clusters). FEEL assigns joy in only 0.8% of texts. DistilBERT is selected as the primary measure for RQ2 and RQ3; all three intensity scores are used for RQ1.
+**Validation** — The three methods are compared on convergent validity (pairwise dominant-emotion agreement: FEEL × DistilBERT 77.5%, DistilBERT × zero-shot 33.3%, FEEL × zero-shot 11.2%), face validity (manual reading of 50 disagreement cases), and corpus-level validation. BERTopic is used to cluster 1993 unemployment-discourse texts into four rhetorical frames (conflictual, programmatic, principled, mobilising) to test whether the zero-shot model is sensitive to tone vs. topic : it is not (sadness assigned in 99.6–100% of cases across all clusters). FEEL assigns joy in only 0.8% of texts. DistilBERT is selected as the primary measure for textual emotions. 
 
 ---
 
@@ -57,21 +57,21 @@ Emotional intensity is measured using three independent methods across Paul Ekma
 
 ### RQ1 — Ideology and Emotional Register (`2_ideology_emotion.ipynb`)
 
-A clear U-shape holds across all three models and both electoral years. On DistilBERT, far-left and far-right candidates score 12–14 points higher on intensity than the mainstream left (β = +0.124 and β = +0.137, p < 0.001, R² = 0.36). The two extremes differ in profile: far-left intensity is driven primarily by anger and disgust; far-right intensity by fear and sadness alongside anger. Joy follows an inverted pattern — ecologists and the mainstream left score highest (ecologists: 0.39), confirming that positive affect is a feature of the centre, not the extremes.
+Candidates at the extremes use more intense, negative language than mainstream candidates : a U-shape consistent across all three models and both years Joy follows the opposite pattern, peaking among ecologists and the mainstream left.
 
 ### RQ2 — Incumbency, Governing Party, and Positive Rhetoric (`4_incumbency_and_emotionvstext.ipynb`)
 
-Both dimensions of political power predict positivity, but the governing-party effect is substantially stronger. Incumbents score higher on joy than challengers (0.43 vs. 0.39; β = +0.019, p < 0.001), but the gap is small. The effect is concentrated in the far-left, where holding office markedly moderates rhetorical intensity (β = +0.068, p < 0.001), and is driven by 1993 rather than 1981. Governing-party candidates score nearly 10 points higher on joy than opposition candidates (β = +0.095, p < 0.001) — five times the individual incumbency effect. The effect is stronger in 1981 (β = +0.127), when the newly elected Socialists contrasted sharply with a frustrated opposition.
-
-A face-vs-text comparison using `dima806/facial_emotions_image_detection` on 3,518 recovered candidate photographs shows that facial and textual signals do not align. Facial scores are systematically lower for all negative emotions; joy is the only dimension where face and text converge (face = 0.399, text = 0.416). Candidates project a neutral or positive visual image regardless of the rhetorical tone of their written text.
+Governing-party candidates are clearly more positive than the opposition. This is an effect about five times larger than the individual incumbency effect. The governing-party gap is strongest in 1981. 
 
 ### RQ3 — Local Economic Context and Emotional Tone (`3_economic_context.ipynb`)
 
-An LDA model with K = 7 topics (selected via joint coherence–Jaccard stability criterion) identifies three unemployment-related topics in the 1993 corpus: one linking unemployment to taxation and immigration (Topic 1, cv = 0.85), one framing it in terms of labour conflict (Topic 5, cv = 0.70), and one taking a programmatic-left approach (Topic 3, cv = 0.44). However, topic structure maps almost entirely onto party affiliation rather than local economic conditions — Topic 5 is 99.1% far-left, Topic 6 is 100% mainstream right.
+LDA (K = 7) identifies three unemployment-related topics in the 1993 corpus, but they map almost entirely onto party affiliation rather than local conditions. The share of unemployment-focused manifestos is flat across unemployment terciles, and emotional scores change very little with local rates. 
 
-The share of unemployment-focused manifestos is essentially flat across unemployment terciles (35.8% low / 34.3% average / 37.0% high). Emotional scores also change very little with local unemployment rates. A regression controlling for bloc and year finds small but significant effects: higher unemployment is associated with slightly more intensity (β = +0.0018, p < 0.01) and anger (β = +0.0038, p < 0.001). The interaction model reveals an asymmetry: left-wing candidates in high-unemployment departments write more intensely and less positively (rhetoric of denunciation), while right and far-right candidates become less intense and more joyful (rhetoric of optimistic contrast). The effect is absent in 1981 and emerges only in 1993.
+### RQ4 — Are facial and textual tone aligned ?
 
+Facial emotion detection on 3,518 candidate photographs shows that face and text signals do not align: candidates project a neutral or positive image regardless of the rhetorical tone of their written text.
 ---
+
 
 ## Data Sources
 
@@ -88,4 +88,3 @@ The share of unemployment-focused manifestos is essentially flat across unemploy
 | facebook/nllb-200-1.3B | Meta AI (2022), HuggingFace |
 | mDeBERTa-v3-base-mnli | Laurer et al. (2022) |
 | facial_emotions_image_detection | dima806, HuggingFace |
-
