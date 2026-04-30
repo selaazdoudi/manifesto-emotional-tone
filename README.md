@@ -25,7 +25,7 @@ manifesto-emotional-tone/
 │   ├── 3_economic_context.ipynb              # LDA topic modelling, unemployment × emotion analysis
 │   └── 4_incumbency_and_emotionvstext.ipynb  # Incumbency, governing party, face vs. text
 │
-└── figures/
+└── report
 ```
 
 ---
